@@ -1,3 +1,4 @@
+// business logic for delivery price calculation
 export const deliveryPriceCalculator = (
   totalDistance: number,
   itemType: string,
