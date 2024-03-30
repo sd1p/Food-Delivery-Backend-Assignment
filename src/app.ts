@@ -34,6 +34,8 @@ app.use(routeNotFound)
 app.use(errorHandler)
 
 // starting the server
-app.listen(4000, () => {
-  console.log('Server is running on port 4000')
+const port = process.env.PORT || 4000
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`)
 })
