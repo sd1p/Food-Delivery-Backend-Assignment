@@ -1,0 +1,276 @@
+openapi: 3.0.0
+info:
+  title: Food Delivery
+  version: 1.0.0
+  description: Food Delivery API documentation
+servers:
+- url: https://api.your-deployed-service.com
+  description: Production server
+- url: http://localhost:3000
+  description: Local development server
+paths:
+  /api/delivery-price:
+    post:
+      summary: Calculate delivery price
+      description: Calculate the total price for delivery based on organization, zone, total distance, and item type.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                organizationId:
+                  type: integer
+                  description: The ID of the organization.
+                  example: 2
+                zone:
+                  type: string
+                  description: The delivery zone.
+                  example: "central"
+                totalDistance:
+                  type: number
+                  description: The total distance in kilometers.
+                  example: 12
+                itemType:
+                  type: string
+                  enum: [perishable, non-perishable]
+                  description: The type of item being delivered.
+                  example: "perishable"
+              required:
+                - organizationId
+                - zone
+                - totalDistance
+                - itemType
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalPrice:
+                    type: number
+                    description: The total price for delivery.
+                    example: 20.5
+        '404':
+          description: Pricing not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Pricing not found'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Description of the error.
+                    example: "Invalid request body"
+  /api/org:
+    post:
+      summary: Create an organization
+      description: Endpoint to create a new organization.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the organization.
+                  example: "test"
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A message indicating the success of the operation.
+                    example: "Organization created successfully"
+                  org:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        description: The ID of the created organization.
+                        example: 2
+                      name:
+                        type: string
+                        description: The name of the created organization.
+                        example: "test"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Description of the error.
+                    example: "Invalid request body"
+  /api/org/item:
+    post:
+      summary: Create an item for an organization
+      description: Endpoint to create a new item for a specific organization.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                organizationId:
+                  type: integer
+                  description: The ID of the organization to which the item belongs.
+                  example: 2
+                type:
+                  type: string
+                  description: The type of the item.
+                  example: "non-perishable"
+                description:
+                  type: string
+                  description: The description of the item.
+                  example: "Soda"
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A message indicating the success of the operation.
+                    example: "Item created successfully"
+                  item:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        description: The ID of the created item.
+                        example: 3
+                      organizationId:
+                        type: integer
+                        description: The ID of the organization to which the item belongs.
+                        example: 2
+                      type:
+                        type: string
+                        description: The type of the item.
+                        example: "non-perishable"
+                      description:
+                        type: string
+                        description: The description of the item.
+                        example: "Soda"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Description of the error.
+                    example: "Invalid request body"
+  /api/org/pricing:
+    post:
+      summary: Create pricing information for an organization
+      description: Endpoint to create pricing information for a specific organization.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                organizationId:
+                  type: integer
+                  description: The ID of the organization for which pricing information is being created.
+                  example: 2
+                itemId:
+                  type: integer
+                  description: The ID of the item for which pricing information is being created.
+                  example: 2
+                zone:
+                  type: string
+                  description: The zone for which the pricing information is applicable.
+                  example: "central"
+                baseDistanceInKm:
+                  type: integer
+                  description: The base distance in kilometers for pricing calculations.
+                  example: 5
+                fixPrice:
+                  type: number
+                  description: The fixed price for the item in the specified zone.
+                  example: 10
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A message indicating the success of the operation.
+                    example: "Pricing created successfully"
+                  pricing:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        description: The ID of the created pricing information.
+                        example: 2
+                      organizationId:
+                        type: integer
+                        description: The ID of the organization for which pricing information is created.
+                        example: 2
+                      itemId:
+                        type: integer
+                        description: The ID of the item for which pricing information is created.
+                        example: 2
+                      zone:
+                        type: string
+                        description: The zone for which the pricing information is applicable.
+                        example: "central"
+                      baseDistanceInKm:
+                        type: integer
+                        description: The base distance in kilometers for pricing calculations.
+                        example: 5
+                      kmPrice:
+                        type: number
+                        description: The price per kilometer for the item in the specified zone.
+                        example: 1
+                      fixPrice:
+                        type: number
+                        description: The fixed price for the item in the specified zone.
+                        example: 10
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Description of the error.
+                    example: "Invalid request body"
