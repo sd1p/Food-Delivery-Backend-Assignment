@@ -39,7 +39,15 @@ To set up the project locally, follow these steps:
     pnpm run dev
     ```
 
-    This will start the server and you can access it at `http://localhost:4000`.
+    This will start the server and which can be accessed at `http://localhost:4000`.
+
+6. Run the tests:
+
+    ```bash
+    pnpm run test
+    ```
+
+    This will execute all the test suits.
 
 ## API Documentation
 
