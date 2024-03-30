@@ -34,7 +34,6 @@ app.use(routeNotFound)
 app.use(errorHandler)
 
 // starting the server
-const port = process.env.PORT || 4000
 
 if (process.env.NODE_ENV !== 'test') {
   const port = process.env.PORT || 4000
