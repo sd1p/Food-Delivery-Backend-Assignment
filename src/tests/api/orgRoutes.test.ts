@@ -41,7 +41,7 @@ describe('POST /api/org/pricing', () => {
     expect(response.body.message).toBe('Pricing created successfully')
     expect(response.body.pricing.organizationId).toBe(2)
     expect(response.body.pricing.itemId).toBe(2)
-    expect(response.body.pricing.zone).toBe('centra2')
+    expect(response.body.pricing.zone).toBe('central')
     expect(response.body.pricing.baseDistanceInKm).toBe(5)
     expect(response.body.pricing.kmPrice).toBe(1)
     expect(response.body.pricing.fixPrice).toBe(10)
