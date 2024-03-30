@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "start": "node dist/index.js",
     "swagger": "swagger-jsdoc -d ./src/swaggerDefination.yaml  -o ./swagger.json ./src/swaggerOptions.js"
   },
   "keywords": [],
