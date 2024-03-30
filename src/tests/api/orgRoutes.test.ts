@@ -32,7 +32,7 @@ describe('POST /api/org/pricing', () => {
     const response = await request(app).post('/api/org/pricing').send({
       organizationId: 2,
       itemId: 2,
-      zone: 'centra2',
+      zone: 'central',
       baseDistanceInKm: 5,
       fixPrice: 10,
     })
