@@ -7,7 +7,7 @@
     "test": "jest",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start": "node dist/src/app.js",
     "swagger": "swagger-jsdoc -d ./src/swaggerDefination.yaml  -o ./swagger.json ./src/swaggerOptions.js"
   },
   "keywords": [],
