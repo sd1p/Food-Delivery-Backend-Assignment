@@ -8,7 +8,12 @@ const options = {
     },
     servers: [
       {
-        url: process.env.API_URL || 'http://localhost:4000',
+        url: 'http://localhost:4000',
+        description: 'Development server',
+      },
+      {
+        url: process.env.PROD_API_URL,
+        description: 'Production server',
       },
     ],
   },

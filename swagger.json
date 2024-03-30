@@ -5,6 +5,16 @@
     "version": "1.0.0",
     "description": "Food Delivery API documentation"
   },
+  "servers": [
+    {
+      "url": "https://food-delivery-backend-assignment.onrender.com/",
+      "description": "Production server"
+    },
+    {
+      "url": "http://localhost:4000",
+      "description": "Local development server"
+    }
+  ],
   "paths": {
     "/api/delivery-price": {
       "post": {
