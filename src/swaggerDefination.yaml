@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: Food Delivery API documentation
 servers:
-- url: https://api.your-deployed-service.com
+- url: https://food-delivery-backend-assignment.onrender.com/
   description: Production server
 - url: http://localhost:3000
   description: Local development server
